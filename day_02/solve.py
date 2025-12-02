@@ -8,25 +8,26 @@ def get_data(test: bool = True):
 
 
 def part1(data: list[str]):
-    def invalid(num):
-        num = str(num)
-        length = len(num)
+    def invalid(num: int):
+        length: int = len(str(num))
 
         if length % 2 != 0:
             return False
 
-        first, second = num[: length // 2], num[length // 2 :]
-
-        if first != second:
-            return False
-
-        return True
+        """We can avoid expensive str casting with divisor trick.
+           Consider 123123:
+               half = 1000
+               left = 123123 // 1000 = 123
+               right = 123123 % 1000 = 123"""
+        half: int = 10 ** (length // 2)
+        left: int = num // half
+        right: int = num % half
+        return left == right
 
     total = 0
 
     for id_range in data:
-        lower, higher = id_range.split("-")
-        lower, higher = int(lower), int(higher)
+        lower, higher = map(int, id_range.split("-"))
 
         for num in range(lower, higher + 1):
             if invalid(num):
@@ -35,30 +36,17 @@ def part1(data: list[str]):
     return total
 
 
-def part2(data):
-    def invalid(num):
-        num = str(num)
-
-        for i in range(2, len(num) + 1):
-            if len(num) % i != 0:
-                continue
-
-            sequence_len = len(num) // i
-            sequence = num[:sequence_len]
-
-            repeating = True
-            for j in range(sequence_len, len(num), sequence_len):
-                if sequence != num[j : j + sequence_len]:
-                    repeating = False
-
-            if repeating:
-                return True
+def part2(data: list[str]):
+    def invalid(num: int):
+        """double the string, remove first and last letters, then check if original string is still substring of the new string.
+        If it is, then string must be composed entirely of repeating sections"""
+        s = str(num)
+        return s in (s + s)[1:-1]
 
     total = 0
 
     for id_range in data:
-        lower, higher = id_range.split("-")
-        lower, higher = int(lower), int(higher)
+        lower, higher = map(int, id_range.split("-"))
 
         for num in range(lower, higher + 1):
             if invalid(num):
