@@ -5,9 +5,10 @@ def load_grid(test: bool):
         return f.read().splitlines()
 
 
-def find_neighbours8(grid: list[str], row: int, col: int) -> list[tuple[int, int]]:
-    dirs = [(-1, -1), (-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1)]
-    neighbours = []
+def _find_neighbours(
+    grid: list[str], row: int, col: int, dirs: list[tuple[int, int]]
+) -> list[tuple[int, int]]:
+    neighbours: list[tuple[int, int]] = []
 
     for d in dirs:
         n_row = row + d[0]
@@ -17,3 +18,13 @@ def find_neighbours8(grid: list[str], row: int, col: int) -> list[tuple[int, int
             neighbours.append((n_row, n_col))
 
     return neighbours
+
+
+def find_neighbours8(grid: list[str], row: int, col: int) -> list[tuple[int, int]]:
+    dirs = [(-1, -1), (-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1)]
+    return _find_neighbours(grid, row, col, dirs)
+
+
+def find_neighbours4(grid: list[str], row: int, col: int) -> list[tuple[int, int]]:
+    dirs = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+    return _find_neighbours(grid, row, col, dirs)
