@@ -16,12 +16,7 @@ def part1(grid: list[str]):
                 continue
 
             neighbours = find_neighbours8(grid, row, col)
-            num_neighbours = 0
-
-            for neighbour in neighbours:
-                if grid[neighbour[0]][neighbour[1]] == "@":
-                    num_neighbours += 1
-
+            num_neighbours = sum(1 for r, c in neighbours if grid[r][c] == "@")
             if num_neighbours < 4:
                 total += 1
 
@@ -47,17 +42,15 @@ def _search_and_remove(
                 continue
 
             neighbours = find_neighbours8(grid, row, col)
-            num_neighbours = 0
-
-            for neighbour in neighbours:
-                if grid[neighbour[0]][neighbour[1]] == "@" and neighbour not in removed:
-                    num_neighbours += 1
+            num_neighbours = sum(
+                1 for r, c in neighbours if grid[r][c] == "@" and (r, c) not in removed
+            )
 
             if num_neighbours < 4:
                 round_total += 1
                 to_remove.add((row, col))
 
-    removed = removed.union(to_remove)
+    removed.update(to_remove)
     if round_total == 0:
         return total
     else:
