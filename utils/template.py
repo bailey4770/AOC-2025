@@ -19,10 +19,10 @@ def main():
     grid = load_grid(True)
 
     result1 = part1(grid)
-    print(result1)
+    print("Part 1: ", result1)
 
     result2 = part2(grid)
-    print(result2)
+    print("Part 2: ", result2)
 
 
 if __name__ == "__main__":
