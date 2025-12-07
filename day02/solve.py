@@ -22,6 +22,7 @@ def part1(data: list[str]):
         half: int = 10 ** (length // 2)
         left: int = num // half
         right: int = num % half
+
         return left == right
 
     total = 0
@@ -57,5 +58,5 @@ def part2(data: list[str]):
 
 if __name__ == "__main__":
     data = get_data(False)
-    print(part1(data))
-    print(part2(data))
+    print(f"Part 1: {part1(data)}")
+    print(f"Part 2: {part2(data)}")
