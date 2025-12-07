@@ -1,40 +1,14 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"log"
 	"math"
-	"os"
 	"strconv"
 	"strings"
+
+	"github.com/bailey4770/aoc2025/utils"
 )
-
-func loadString(test bool) ([]string, error) {
-	var fileName string
-	if test {
-		fileName = "test_input.txt"
-	} else {
-		fileName = "input.txt"
-	}
-
-	file, err := os.Open(fileName)
-	if err != nil {
-		return nil, err
-	}
-	defer file.Close()
-
-	var data []string
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		text := scanner.Text()
-		line := strings.Split(text, ",")
-		data = append(data, line...)
-	}
-
-	return data, nil
-}
 
 func getBounds(idRange string) (int, int, error) {
 	splitRange := strings.Split(idRange, "-")
@@ -119,7 +93,7 @@ func part2(data []string) (int, error) {
 }
 
 func main() {
-	data, err := loadString(false)
+	data, err := utils.LoadString(false)
 	if err != nil {
 		log.Fatalf("Error: %v", err)
 	}
