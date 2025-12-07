@@ -93,7 +93,7 @@ func part2(data []string) (int, error) {
 }
 
 func main() {
-	data, err := utils.LoadString(false)
+	data, err := utils.LoadString(false, ",")
 	if err != nil {
 		log.Fatalf("Error: %v", err)
 	}

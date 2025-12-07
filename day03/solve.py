@@ -42,8 +42,8 @@ def part2(data: list[str]):
 
 def main():
     data = get_data(test=False)
-    print(part1(data))
-    print(part2(data))
+    print(f"Part 1: {part1(data)}")
+    print(f"Part 2: {part2(data)}")
 
     # day 3 ez bro
     # I like a nice recursive question

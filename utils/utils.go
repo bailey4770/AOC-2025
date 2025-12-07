@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func LoadString(test bool) ([]string, error) {
+func LoadString(test bool, separator string) ([]string, error) {
 	var fileName string
 	if test {
 		fileName = "test_input.txt"
@@ -25,7 +25,7 @@ func LoadString(test bool) ([]string, error) {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		text := scanner.Text()
-		line := strings.Split(text, ",")
+		line := strings.Split(text, separator)
 		data = append(data, line...)
 	}
 
