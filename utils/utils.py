@@ -5,6 +5,21 @@ def load_grid(test: bool):
         return f.read().splitlines()
 
 
+def load_coordinates(test: bool) -> list[tuple[int, int, int]]:
+    file_name = "test_input.txt" if test else "input.txt"
+
+    with open(file_name, "r") as f:
+        lines = f.read().splitlines()
+
+    coordinates: list[tuple[int, int, int]] = []
+    for line in lines:
+        parts = line.split(",")
+        curr: tuple[int, int, int] = (int(parts[0]), int(parts[1]), int(parts[2]))
+        coordinates.append(curr)
+
+    return coordinates
+
+
 def _find_neighbours(
     grid: list[str], row: int, col: int, dirs: list[tuple[int, int]]
 ) -> list[tuple[int, int]]:
