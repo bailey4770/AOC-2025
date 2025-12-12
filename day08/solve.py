@@ -7,6 +7,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from utils.utils import load_coordinates
 
 import heapq
+from typing import cast
 
 
 class UnionFind:
@@ -121,9 +122,12 @@ def part2(coordinates: list[tuple[int, int, int]]):
 
 def main():
     test = False
-    coordinates = load_coordinates(test)
-
     num_connections = 10 if test else 1000
+
+    coordinates = load_coordinates(test)
+    assert all(len(coord) == 3 for coord in coordinates), "All coordinates must be 3D"
+    coordinates = cast(list[tuple[int, int, int]], coordinates)
+
     result1 = part1(coordinates, num_connections)
     print("Part 1: ", result1)
 

@@ -5,16 +5,15 @@ def load_grid(test: bool):
         return f.read().splitlines()
 
 
-def load_coordinates(test: bool) -> list[tuple[int, int, int]]:
+def load_coordinates(test: bool) -> list[tuple[int, ...]]:
     file_name = "test_input.txt" if test else "input.txt"
 
     with open(file_name, "r") as f:
         lines = f.read().splitlines()
 
-    coordinates: list[tuple[int, int, int]] = []
+    coordinates: list[tuple[int, ...]] = []
     for line in lines:
-        parts = line.split(",")
-        curr: tuple[int, int, int] = (int(parts[0]), int(parts[1]), int(parts[2]))
+        curr: tuple[int, ...] = tuple(map(int, line.split(",")))
         coordinates.append(curr)
 
     return coordinates
