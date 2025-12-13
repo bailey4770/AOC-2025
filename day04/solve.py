@@ -23,13 +23,6 @@ def part1(grid: list[str]):
     return total
 
 
-def part2(grid: list[str]):
-    total = 0
-    removed: set[tuple[int, int]] = set()
-
-    return _search_and_remove(grid, removed, total)
-
-
 def _search_and_remove(
     grid: list[str], removed: set[tuple[int, int]], total: int
 ) -> int:
@@ -55,6 +48,13 @@ def _search_and_remove(
         return total
     else:
         return _search_and_remove(grid, removed, total + round_total)
+
+
+def part2(grid: list[str]):
+    total = 0
+    removed: set[tuple[int, int]] = set()
+
+    return _search_and_remove(grid, removed, total)
 
 
 def main():
