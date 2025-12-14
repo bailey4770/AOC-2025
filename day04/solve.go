@@ -71,16 +71,13 @@ func searchAndRemove(grid []string, removed map[[2]int]struct{}, total int) int 
 
 	if roundTotal == 0 {
 		return total
-	} else {
-		return searchAndRemove(grid, removed, total+roundTotal)
 	}
+	return searchAndRemove(grid, removed, total+roundTotal)
 }
 
 func part2(grid []string) int {
-	total := 0
 	removed := make(map[[2]int]struct{})
-
-	return searchAndRemove(grid, removed, total)
+	return searchAndRemove(grid, removed, 0)
 }
 
 func main() {
@@ -93,8 +90,5 @@ func main() {
 	fmt.Printf("Part 1: %v\n", res1)
 
 	res2 := part2(data)
-	if err != nil {
-		log.Fatalf("Error: %v", err)
-	}
 	fmt.Printf("Part 2: %v\n", res2)
 }
