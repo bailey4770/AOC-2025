@@ -55,8 +55,8 @@ def part1(grid: list[str]):
     return total
 
 
-def _build_cols2(grid: list[str]) -> list[list[list[str]]]:
-    cols: list[list[str]] = [[""] for _ in range(len(grid[0]))]
+def _build_cols2(grid: list[str]) -> list[list[str]]:
+    cols: list[str] = ["" for _ in range(len(grid[0]))]
     num_problems = 0
 
     for line in grid:
@@ -66,7 +66,7 @@ def _build_cols2(grid: list[str]) -> list[list[list[str]]]:
             if char == "+" or char == "*":
                 num_problems += 1
 
-    problems: list[list[list[str]]] = [[] for _ in range(num_problems)]
+    problems: list[list[str]] = [[] for _ in range(num_problems)]
 
     i = 0
     for col in cols:
